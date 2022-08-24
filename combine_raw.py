@@ -206,12 +206,8 @@ def main():
 
         switch_iframe(browser, '//*[@id="searchIframe"]')
 
-    with open(r"C:\Users\danha\Desktop\STARTCODING\combine_json.json", 'w', encoding='utf-8') as combine_file:
+    with open(r"C:\Users\danha\Documents\GitHub\naver_search_crawling\crawling.py\1.py", 'w', encoding='utf-8') as combine_file:
         json.dump(total_data, combine_file, indent="\t", ensure_ascii=False)
-
-    with open(r"C:\Users\danha\Desktop\STARTCODING\marker_position_data.json", 'w', encoding='utf-8') as marker_file:
-        json.dump(total_marker, marker_file, indent="\t", ensure_ascii=False)
-
 
 if __name__ == '__main__':
     menu_css_selectors = [
