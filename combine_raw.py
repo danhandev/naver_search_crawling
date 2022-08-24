@@ -197,12 +197,12 @@ def main():
         data_dic["menus"] = get_menu(browser)
         data_dic["location"] = get_coordinates(data_dic["title"])
 
-        print(data_dic)  # 확인용
+        # print(data_dic)
         total_data.append(data_dic)
 
         marker_dic[data_dic["title"]] = data_dic["location"]
         total_marker.append(marker_dic)
-        print(marker_dic)
+        # print(marker_dic)
 
         switch_iframe(browser, '//*[@id="searchIframe"]')
 

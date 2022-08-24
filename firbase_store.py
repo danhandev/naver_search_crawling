@@ -11,27 +11,25 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-# auto increment id로 document 추가
-
 for data in final_data_dic.values():
-# data = final_data_dic.get('아오이토리')
-    # print(data)
+    # auto increment id로 document 생성
     doc_ref = db.collection(u'cae').document()
     
+    # 오픈 시간 월 ~ 일로 변환
     if '매일' in data['open_time']:
         open_time = data['open_time']['매일']
         data['open_time'] = {}
 
         for day in ['월', '화', '수', '목', '금', '토', '일']:
             data['open_time'][day] = open_time
-    # print(data['open_time'])
 
+    # tag 추가
     data['tags'] = []
     for i, cafe in enumerate([bakery_cafe.bakery_cafe, brunch_cafe.brunch_cafe, healing_cafe.healing_cafe, instagram_cafe.instagram_cafe, new_cafe.new_cafe, view_cafe.view_cafe]):
         if data['name'] in cafe:
             data['tags'].append(i+1)
-    # print(data['tags'])
 
+    # firestore에 data 저장
     doc_ref.set({
         u'name': data['name'],
         u'images': data['images'],
@@ -43,8 +41,8 @@ for data in final_data_dic.values():
         u'tags': data['tags']
     })
 
-# 데이터 읽기
-# users_ref = db.collection(u'test_cafes')
+# 데이터 확인용
+# users_ref = db.collection(u'cae')
 # docs = users_ref.stream()
 
 # for doc in docs:
