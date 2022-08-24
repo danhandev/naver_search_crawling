@@ -3,3 +3,8 @@
 /google_position.py
 /tag_list
 /자투리코드파일
+
+
+
+*.pyc
+cafegation-firebase-admin.json
