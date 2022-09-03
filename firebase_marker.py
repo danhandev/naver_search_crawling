@@ -18,15 +18,21 @@ users_ref = db.collection(u'cae')
 docs = users_ref.stream()
 
 for doc in docs:
+    # document 데이터 중 주소값을 가져온다.
     location = doc.to_dict()['location']
 
     try:
+        # 주소를 사용해 좌표값을 가져온다.
         geocode_result = gmaps.geocode(location)[0]['geometry']['location']
 
+        # 경도, 위도 값만 추출한다.
         latitude = geocode_result['lat']
         longitude = geocode_result['lng']
 
+        # 좌표값을 넣을 document를 설정한다.
         set_doc = users_ref.document(doc.id)
+        
+        # 이미 존재하는 데이터에 좌표값을 추가한다.
         set_doc.set({
             u'coordinate': [latitude, longitude],
         }, merge=True)
